@@ -1,0 +1,83 @@
+﻿<Window x:Class="WpfCoreAWSTranscribeSample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfCoreAWSTranscribeSample"
+        mc:Ignorable="d"
+        Title="AWS Transcribe" Height="450" Width="800">
+    <Grid Margin="5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Grid.ColumnSpan="2" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Margin="3">AWS Profile:</TextBlock>
+            <TextBox Grid.Row="0" Grid.Column="1" Margin="3" Name="_ctlProfile">default</TextBox>
+            <TextBlock Grid.Row="0" Grid.Column="2" Margin="3">Region:</TextBlock>
+            <TextBox Grid.Row="0" Grid.Column="3" Margin="3" Name="_ctlRegion">us-east-1</TextBox>
+
+            <TextBlock Grid.Row="1" Grid.Column="0" Margin="3" >S3 Bucket:</TextBlock>
+            <TextBox Grid.Row="1" Grid.Column="1" Margin="3" Name="_ctlS3Bucket" ></TextBox>
+            <TextBlock Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" FontStyle="Italic" VerticalAlignment="Center">Movie uploaded to this bucket for AWS Transcribe to access.</TextBlock>
+
+            <TextBlock Grid.Row="2" Grid.Column="0" Margin="3">File:</TextBlock>
+            <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+
+                <TextBox IsReadOnly="True" Grid.Column="0" Margin="3" Name="_ctlFilepath"></TextBox>
+                <Button Grid.Column="1" Margin="3" Padding="3" Click="Browse_Click">Browse</Button>
+            </Grid>
+
+        </Grid>
+
+
+        <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" 
+                Margin="5" Padding="5" FontWeight="SemiBold"
+                Name="_ctlBeginTranscription"
+                Click="BeginTranscription_Click"
+                >Begin Transcription</Button>
+
+        <TextBlock Grid.Row="3" Margin="3">Status Log:</TextBlock>
+        <Border Grid.Row="4" Grid.ColumnSpan="2" 
+                BorderThickness="1" BorderBrush="Black"
+                Margin="3">
+            <TextBox MinHeight="100" MaxHeight="100" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" x:Name="_ctlStatusLog" ></TextBox>
+        </Border>
+
+        <TextBlock Grid.Row="5" Margin="3">Transcription:</TextBlock>
+        <Border Grid.Row="6" Grid.ColumnSpan="2" 
+                BorderThickness="1" BorderBrush="Black"
+                Margin="3">
+            <TextBox IsReadOnly="True" Name="_ctlTranscription"
+                     TextWrapping="WrapWithOverflow"
+                     VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
+                     ></TextBox>
+        </Border>
+    </Grid>
+</Window>
